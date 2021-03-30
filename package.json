@@ -1,0 +1,22 @@
+{
+  "name": "bowling",
+  "version": "1.0.0",
+  "description": "In september of 2020 I got the following programming task from one of my job applications. Now I decided to do it again in javascript and see how much I improved. I'm concentrating on clean and testable code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sz-sebestyen/bowling.git"
+  },
+  "author": "Sebestyen Szabo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sz-sebestyen/bowling/issues"
+  },
+  "homepage": "https://github.com/sz-sebestyen/bowling#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

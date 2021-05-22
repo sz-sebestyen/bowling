@@ -14,9 +14,9 @@ module.exports = class BowlingGame {
     const isTooShort = (str) => str.length < MIN_GAMESTRING_LENGTH;
 
     if (isTooLong(gameString)) {
-      throw RangeError("Gamestring is too long!");
+      throw RangeError("Game is too long!");
     } else if (isTooShort(gameString)) {
-      throw RangeError("Gamestring is too short!");
+      throw RangeError("Game is too short!");
     }
 
     return [];

@@ -4,7 +4,8 @@ const MIN_GAMESTRING_LENGTH = 20;
 module.exports = class BowlingGame {
   constructor(gameString) {
     this.gameString = gameString;
-    this._frames = [];
+    this._balls = [];
+    this._frames = BowlingGame._parseFrames(gameString);
     this._bonusBalls = [];
     this._score = 0;
   }

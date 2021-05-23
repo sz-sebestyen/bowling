@@ -22,14 +22,14 @@ const strikeBonusBalls = `^(?:${frameNoCap}\\s){9}${strikeFrame}(?:\\s${bonusBal
 const spareBonusBall = `^(?:${frameNoCap}\\s){9}${spareFrame}\\s${bonusBall}$`;
 const noBonusBalls = `^(?:${frameNoCap}\\s){9}(?:${openFrame}|${missFrame})$`;
 
-module.missBallMatcher = new RegExp(missBall);
+exports.missBallMatcher = new RegExp(missBall);
 
-module.openFrameMatcher = new RegExp(openFrame);
-module.spareFrameMatcher = new RegExp(spareFrame);
-module.strikeFrameMatcher = new RegExp(strikeFrame, "i");
-module.missFrameMatcher = new RegExp(missFrame);
+exports.openFrameMatcher = new RegExp(openFrame);
+exports.spareFrameMatcher = new RegExp(spareFrame);
+exports.strikeFrameMatcher = new RegExp(strikeFrame, "i");
+exports.missFrameMatcher = new RegExp(missFrame);
 
-module.framesMatcher = new RegExp(allFrames, "i");
-module.strikeBonusBallsMatcher = new RegExp(strikeBonusBalls, "i");
-module.spareBonusBallMatcher = new RegExp(spareBonusBall, "i");
-module.noBonusBallsMatcher = new RegExp(noBonusBalls, "i");
+exports.framesMatcher = new RegExp(allFrames, "i");
+exports.strikeBonusBallsMatcher = new RegExp(strikeBonusBalls, "i");
+exports.spareBonusBallMatcher = new RegExp(spareBonusBall, "i");
+exports.noBonusBallsMatcher = new RegExp(noBonusBalls, "i");

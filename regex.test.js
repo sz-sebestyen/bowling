@@ -103,17 +103,31 @@ describe("Match missed frames", () => {
 });
 
 describe("Match 10 frames", () => {
+  const example1 = "x x x x x x x x x x x x";
+  const example2 = "x 35 9/ -7 -/ x 12 51 - 4/ x";
+
   it("Correct", () => {
-    expect(framesMatcher.test("x x x x x x x x x x x x")).toBeTruthy();
-    expect(framesMatcher.test("x 35 9/ -7 -/ x 12 51 - 4/ x")).toBeTruthy();
-
-    console.log("x x x x x x x x x x x x".match(framesMatcher));
-    console.log("x 35 9/ -7 -/ x 12 51 - 4/ x".match(framesMatcher));
-
-    // TODO: expect all caputring groups
+    expect(framesMatcher.test(example1)).toBeTruthy();
+    expect(framesMatcher.test(example2)).toBeTruthy();
   });
 
   it("Don't match too short strings", () => {
     expect(framesMatcher.test("x x x x 23 12 -/ -")).toBeFalsy();
+  });
+
+  it("Match capuring groups", () => {
+    const match1 = example1.match(framesMatcher);
+    expect(match1[0] === example1.slice(0, 19)).toBeTruthy();
+    for (let i = 1; i < match1.length; i++) {
+      const arr = example1.split(" ");
+      expect(match1[i] === arr[i - 1]).toBeTruthy();
+    }
+
+    const match2 = example2.match(framesMatcher);
+    expect(match2[0] === example2.slice(0, 26)).toBeTruthy();
+    for (let i = 1; i < match2.length; i++) {
+      const arr = example2.split(" ");
+      expect(match2[i] === arr[i - 1]).toBeTruthy();
+    }
   });
 });

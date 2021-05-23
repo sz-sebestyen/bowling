@@ -10,14 +10,22 @@ const {
   noBonusBallsMatcher,
 } = require("./regex");
 
-it("Match a missed ball", () => {
-  expect(missBallMatcher.test("-")).toBeTruthy();
-  expect(missBallMatcher.test("x")).toBeFalsy();
-  expect(missBallMatcher.test("X")).toBeFalsy();
-  expect(missBallMatcher.test("/")).toBeFalsy();
-  for (let i = 1; i < 10; i++) {
-    expect(missBallMatcher.test(`${i}`)).toBeFalsy();
-  }
+describe("Match a missed ball", () => {
+  it("Correct", () => {
+    expect(missBallMatcher.test("-")).toBeTruthy();
+  });
+
+  it("Don't match strikes and spares", () => {
+    expect(missBallMatcher.test("x")).toBeFalsy();
+    expect(missBallMatcher.test("X")).toBeFalsy();
+    expect(missBallMatcher.test("/")).toBeFalsy();
+  });
+
+  it("Don't match open frames", () => {
+    for (let i = 1; i < 10; i++) {
+      expect(missBallMatcher.test(`${i}`)).toBeFalsy();
+    }
+  });
 });
 
 it("Match open frames", () => {
@@ -27,7 +35,9 @@ it("Match open frames", () => {
   expect(openFrameMatcher.test("55")).toBeTruthy();
   expect(openFrameMatcher.test("x")).toBeFalsy();
   expect(openFrameMatcher.test("-/")).toBeFalsy();
+  expect(openFrameMatcher.test("--")).toBeFalsy();
   expect(openFrameMatcher.test("9/")).toBeFalsy();
+  expect(openFrameMatcher.test("111")).toBeFalsy();
   for (let i = 1; i < 9; i++) {
     expect(openFrameMatcher.test(`${i}${9 - i}`)).toBeTruthy();
   }
@@ -38,6 +48,7 @@ it("Match spare frames", () => {
   expect(spareFrameMatcher.test("//")).toBeFalsy();
   expect(spareFrameMatcher.test("-9")).toBeFalsy();
   expect(spareFrameMatcher.test("-/")).toBeTruthy();
+  expect(spareFrameMatcher.test("-9/")).toBeFalsy();
   for (let i = 1; i < 10; i++) {
     expect(spareFrameMatcher.test(`${i}/`)).toBeTruthy();
   }

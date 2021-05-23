@@ -45,6 +45,8 @@ it("Match spare frames", () => {
 
 it("Match strike frames", () => {
   expect(strikeFrameMatcher.test("x")).toBeTruthy();
+  expect(strikeFrameMatcher.test("X")).toBeTruthy();
+  expect(strikeFrameMatcher.test("xx")).toBeFalsy();
   expect(strikeFrameMatcher.test("//")).toBeFalsy();
   expect(strikeFrameMatcher.test("-/")).toBeFalsy();
   for (let i = 1; i < 10; i++) {
@@ -52,5 +54,19 @@ it("Match strike frames", () => {
   }
   for (let i = 1; i < 9; i++) {
     expect(strikeFrameMatcher.test(`${i}${9 - i}`)).toBeFalsy();
+  }
+});
+
+it("Match missed frames", () => {
+  expect(missFrameMatcher.test("-")).toBeTruthy();
+  expect(missFrameMatcher.test("//")).toBeFalsy();
+  expect(missFrameMatcher.test("-/")).toBeFalsy();
+  expect(missFrameMatcher.test("--")).toBeFalsy();
+  expect(missFrameMatcher.test("x")).toBeFalsy();
+  for (let i = 1; i < 10; i++) {
+    expect(missFrameMatcher.test(`${i}/`)).toBeFalsy();
+  }
+  for (let i = 1; i < 9; i++) {
+    expect(missFrameMatcher.test(`${i}${9 - i}`)).toBeFalsy();
   }
 });

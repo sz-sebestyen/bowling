@@ -101,3 +101,17 @@ describe("Match missed frames", () => {
     }
   });
 });
+
+describe("Match 10 frames", () => {
+  it("Correct", () => {
+    expect(framesMatcher.test("x x x x x x x x x x x x")).toBeTruthy();
+    expect(framesMatcher.test("x 35 9/ -7 -/ x 12 51 - 4/ x")).toBeTruthy();
+
+    console.log("x x x x x x x x x x x x".match(framesMatcher));
+    console.log("x 35 9/ -7 -/ x 12 51 - 4/ x".match(framesMatcher));
+  });
+
+  it("Don't match too short strings", () => {
+    expect(framesMatcher.test("x x x x 23 12 -/ -")).toBeFalsy();
+  });
+});

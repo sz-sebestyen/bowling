@@ -143,6 +143,11 @@ describe("Match games without bonus balls", () => {
     expect(noBonusBallsMatcher.test(game)).toBeTruthy();
   });
 
+  it("Game ends on open frame, but there is a bonus ball", () => {
+    const game = "x x x x x x x x x 23 -";
+    expect(noBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+
   it("Game ends on open spare", () => {
     const game = "x x x x x x x x x 2/ x";
     expect(noBonusBallsMatcher.test(game)).toBeFalsy();
@@ -151,5 +156,32 @@ describe("Match games without bonus balls", () => {
   it("Game ends on open strike", () => {
     const game = "x x x x x x x x x x x 2";
     expect(noBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+});
+
+describe("Match games with one bonus ball", () => {
+  it("Game ends on miss", () => {
+    const game = "x x x x x x x x x -";
+    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open frame", () => {
+    const game = "x x x x x x x x x 23";
+    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open spare", () => {
+    const game = "x x x x x x x x x 2/ x";
+    expect(spareBonusBallMatcher.test(game)).toBeTruthy();
+  });
+
+  it("Game ends on open spare, but the bonus ball is missing", () => {
+    const game = "x x x x x x x x x 2/ ";
+    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open strike", () => {
+    const game = "x x x x x x x x x x x 2";
+    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
   });
 });

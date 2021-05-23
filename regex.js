@@ -17,10 +17,8 @@ const frameNoCap = `(?:${openFrame}|${spareFrame}|${strikeFrame}|${missFrame})`;
 const bonusBall = `(${numBall}|${missBall}|${strikeBall})`;
 
 // game patterns
-// TODO: capture all frams and not just the first and last
-const allFrames = `^${frame}(?:\\s${frame}){9}`;
-// TODO: capture both bonus balls not just the last one
-const strikeBonusBalls = `^(?:${frameNoCap}\\s){9}${strikeFrame}(?:\\s${bonusBall}){2}$`;
+const allFrames = `^${frame}` + `\\s${frame}`.repeat(9);
+const strikeBonusBalls = `^(?:${frameNoCap}\\s){9}${strikeFrame}\\s${bonusBall}\\s${bonusBall}$`;
 const spareBonusBall = `^(?:${frameNoCap}\\s){9}${spareFrame}\\s${bonusBall}$`;
 const noBonusBalls = `^(?:${frameNoCap}\\s){9}(?:${openFrame}|${missFrame})$`;
 

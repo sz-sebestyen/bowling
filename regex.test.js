@@ -32,3 +32,13 @@ it("Match open frames", () => {
     expect(openFrameMatcher.test(`${i}${9 - i}`)).toBeTruthy();
   }
 });
+
+it("Match spare frames", () => {
+  expect(spareFrameMatcher.test("x")).toBeFalsy();
+  expect(spareFrameMatcher.test("//")).toBeFalsy();
+  expect(spareFrameMatcher.test("-9")).toBeFalsy();
+  expect(spareFrameMatcher.test("-/")).toBeTruthy();
+  for (let i = 1; i < 10; i++) {
+    expect(spareFrameMatcher.test(`${i}/`)).toBeTruthy();
+  }
+});

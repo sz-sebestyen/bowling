@@ -185,3 +185,35 @@ describe("Match games with one bonus ball", () => {
     expect(spareBonusBallMatcher.test(game)).toBeFalsy();
   });
 });
+
+describe("Match games with two bonus balls", () => {
+  it("Game ends on miss", () => {
+    const game = "x x x x x x x x x -";
+    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open frame", () => {
+    const game = "x x x x x x x x x 23";
+    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open spare", () => {
+    const game = "x x x x x x x x x 2/ x";
+    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open spare, but there is an additional ball", () => {
+    const game = "x x x x x x x x x 2/ x x";
+    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open strike", () => {
+    const game = "x x x x x x x x x x x 2";
+    expect(strikeBonusBallsMatcher.test(game)).toBeTruthy();
+  });
+
+  it("Game ends on open strike, but bonus balls are missing", () => {
+    const game = "x x x x x x x x x x";
+    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+});

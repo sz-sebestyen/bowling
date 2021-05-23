@@ -131,3 +131,25 @@ describe("Match 10 frames", () => {
     }
   });
 });
+
+describe("Match games without bonus balls", () => {
+  it("Game ends on miss", () => {
+    const game = "x x x x x x x x x -";
+    expect(noBonusBallsMatcher.test(game)).toBeTruthy();
+  });
+
+  it("Game ends on open frame", () => {
+    const game = "x x x x x x x x x 23";
+    expect(noBonusBallsMatcher.test(game)).toBeTruthy();
+  });
+
+  it("Game ends on open spare", () => {
+    const game = "x x x x x x x x x 2/ x";
+    expect(noBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+
+  it("Game ends on open strike", () => {
+    const game = "x x x x x x x x x x x 2";
+    expect(noBonusBallsMatcher.test(game)).toBeFalsy();
+  });
+});

@@ -42,3 +42,15 @@ it("Match spare frames", () => {
     expect(spareFrameMatcher.test(`${i}/`)).toBeTruthy();
   }
 });
+
+it("Match strike frames", () => {
+  expect(strikeFrameMatcher.test("x")).toBeTruthy();
+  expect(strikeFrameMatcher.test("//")).toBeFalsy();
+  expect(strikeFrameMatcher.test("-/")).toBeFalsy();
+  for (let i = 1; i < 10; i++) {
+    expect(strikeFrameMatcher.test(`${i}/`)).toBeFalsy();
+  }
+  for (let i = 1; i < 9; i++) {
+    expect(strikeFrameMatcher.test(`${i}${9 - i}`)).toBeFalsy();
+  }
+});

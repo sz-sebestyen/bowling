@@ -109,6 +109,8 @@ describe("Match 10 frames", () => {
 
     console.log("x x x x x x x x x x x x".match(framesMatcher));
     console.log("x 35 9/ -7 -/ x 12 51 - 4/ x".match(framesMatcher));
+
+    // TODO: expect all caputring groups
   });
 
   it("Don't match too short strings", () => {

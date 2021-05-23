@@ -115,6 +115,10 @@ describe("Match 10 frames", () => {
     expect(framesMatcher.test("x x x x 23 12 -/ -")).toBeFalsy();
   });
 
+  it("Don't match strings with more spaces", () => {
+    expect(framesMatcher.test("x x x x x x x x  x x x x")).toBeFalsy();
+  });
+
   it("Match capuring groups", () => {
     const match1 = example1.match(framesMatcher);
     expect(match1[0] === example1.slice(0, 19)).toBeTruthy();

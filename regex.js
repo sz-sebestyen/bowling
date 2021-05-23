@@ -26,8 +26,8 @@ exports.missBallMatcher = new RegExp(missBall);
 
 exports.openFrameMatcher = new RegExp(openFrame);
 exports.spareFrameMatcher = new RegExp(spareFrame);
-exports.strikeFrameMatcher = new RegExp(strikeFrame, "i");
-exports.missFrameMatcher = new RegExp(missFrame);
+exports.strikeFrameMatcher = new RegExp(`^${strikeFrame}$`, "i");
+exports.missFrameMatcher = new RegExp(`^${missFrame}$`);
 
 exports.framesMatcher = new RegExp(allFrames, "i");
 exports.strikeBonusBallsMatcher = new RegExp(strikeBonusBalls, "i");

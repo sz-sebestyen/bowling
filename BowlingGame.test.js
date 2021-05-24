@@ -34,5 +34,29 @@ describe("Parse bonusballs", () => {
     ).toBeTruthy();
   });
 
-  // TODO: write tests for errors
+  it("Wrong number of bonus balls", () => {
+    expect(() => BowlingGame.parseBonusBalls("x x x x x x x x x x 2")).toThrow(
+      RangeError
+    );
+
+    expect(() =>
+      BowlingGame.parseBonusBalls("x x x x x x x x x x 2 3 4")
+    ).toThrow(RangeError);
+
+    expect(() => BowlingGame.parseBonusBalls("x x x x x x x x x x")).toThrow(
+      RangeError
+    );
+
+    expect(() => BowlingGame.parseBonusBalls("x x x x x x x x x 1/")).toThrow(
+      RangeError
+    );
+
+    expect(() =>
+      BowlingGame.parseBonusBalls("x x x x x x x x x 2/ 2 3")
+    ).toThrow(RangeError);
+
+    expect(() => BowlingGame.parseBonusBalls("x x x x x x x x x - 1")).toThrow(
+      RangeError
+    );
+  });
 });

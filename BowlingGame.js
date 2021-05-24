@@ -17,7 +17,7 @@ module.exports = class BowlingGame {
     this.gameString = gameString;
     this._balls = [];
     this._frames = BowlingGame.parseFrames(gameString);
-    this._bonusBalls = [];
+    this._bonusBalls = BowlingGame.parseBonusBalls(gameString);
     this._score = 0;
   }
 
@@ -39,6 +39,24 @@ module.exports = class BowlingGame {
     };
 
     return getFrames(gameString);
+  }
+
+  static parseBonusBalls(gameString) {
+    const [isLastFrameOpen] = str.match(noBonusBallsMatcher);
+    const [isLastFrameSpare, bonusBall] = str.match(spareBonusBallMatcher);
+    const [isLastFrameStrike, ...bonusBalls] = str.match(
+      strikeBonusBallsMatcher
+    );
+
+    if (isLastFrameOpen) {
+      return [];
+    } else if (isLastFrameSpare) {
+      return [bonusBall];
+    } else if (isLastFrameStrike) {
+      return bonusBalls;
+    } else {
+      throw RangeError("Then number of bonusballs must match the last frame!");
+    }
   }
 
   getScore() {

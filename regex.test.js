@@ -179,6 +179,12 @@ describe("Match games with one bonus ball", () => {
     expect(spareBonusBallMatcher.test(game)).toBeTruthy();
   });
 
+  it("Game ends on open spare, capture bonus ball", () => {
+    const game = "x x x x x x x x x 2/ x";
+    expect(game.match(spareBonusBallMatcher)[0] === game).toBeTruthy();
+    expect(game.match(spareBonusBallMatcher)[1] === "x").toBeTruthy();
+  });
+
   it("Game ends on open spare, but the bonus ball is missing", () => {
     const game = "x x x x x x x x x 2/ ";
     expect(spareBonusBallMatcher.test(game)).toBeFalsy();
@@ -214,6 +220,13 @@ describe("Match games with two bonus balls", () => {
   it("Game ends on open strike", () => {
     const game = "x x x x x x x x x x x 2";
     expect(strikeBonusBallsMatcher.test(game)).toBeTruthy();
+  });
+
+  it("Game ends on open strike, capture bonus balls", () => {
+    const game = "x x x x x x x x x x x 2";
+    expect(game.match(strikeBonusBallsMatcher)[0] === game).toBeTruthy();
+    expect(game.match(strikeBonusBallsMatcher)[1] === "x").toBeTruthy();
+    expect(game.match(strikeBonusBallsMatcher)[2] === "2").toBeTruthy();
   });
 
   it("Game ends on open strike, but bonus balls are missing", () => {

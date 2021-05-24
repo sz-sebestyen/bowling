@@ -44,9 +44,11 @@ module.exports = class BowlingGame {
   }
 
   static parseBonusBalls(gameString) {
-    const [isLastFrameOpen] = str.match(noBonusBallsMatcher);
-    const [isLastFrameSpare, bonusBall] = str.match(spareBonusBallMatcher);
-    const [isLastFrameStrike, ...bonusBalls] = str.match(
+    const [isLastFrameOpen] = gameString.match(noBonusBallsMatcher);
+    const [isLastFrameSpare, bonusBall] = gameString.match(
+      spareBonusBallMatcher
+    );
+    const [isLastFrameStrike, ...bonusBalls] = gameString.match(
       strikeBonusBallsMatcher
     );
 

@@ -16,12 +16,12 @@ module.exports = class BowlingGame {
   constructor(gameString) {
     this.gameString = gameString;
     this._balls = [];
-    this._frames = BowlingGame._parseFrames(gameString);
+    this._frames = BowlingGame.parseFrames(gameString);
     this._bonusBalls = [];
     this._score = 0;
   }
 
-  static _parseFrames(gameString) {
+  static parseFrames(gameString) {
     const isTooLong = (str) => str.length > MAX_GAMESTRING_LENGTH;
 
     if (isTooLong(gameString)) {

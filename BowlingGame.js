@@ -29,11 +29,13 @@ module.exports = class BowlingGame {
     }
 
     const getFrames = (str) => {
-      const [matched, ...frames] = str.match(framesMatcher);
+      const matched = str.match(framesMatcher);
 
       if (!matched) {
         throw RangeError("A game must have 10 frames!");
       }
+
+      const [_, ...frames] = matched;
 
       return frames;
     };

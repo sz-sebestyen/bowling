@@ -11,6 +11,6 @@ describe("Parse frames", () => {
   });
 
   it("Too few frames", () => {
-    expect(BowlingGame.parseFrames("x x x x x x")).toThrow(RangeError);
+    expect(() => BowlingGame.parseFrames("x x x x x x")).toThrow(RangeError);
   });
 });

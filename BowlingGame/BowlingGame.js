@@ -4,16 +4,16 @@ const {
   spareFrameMatcher,
   strikeFrameMatcher,
   missFrameMatcher,
-  framesMatcher,
   strikeBonusBallsMatcher,
   spareBonusBallMatcher,
   noBonusBallsMatcher,
 } = require("./regex");
 
+const { parseFrames } = require("./parseFrames");
+
 const { OpenFrame, Strike, Spare } = require("./Frame");
 const Ball = require("./Ball");
 
-const MAX_GAMESTRING_LENGTH = 32;
 const NUMBER_OF_PINS = 10;
 
 module.exports = class BowlingGame {
@@ -110,28 +110,6 @@ module.exports = class BowlingGame {
     });
 
     return frames;
-  }
-
-  static parseFrames(gameString) {
-    const isTooLong = (str) => str.length > MAX_GAMESTRING_LENGTH;
-
-    if (isTooLong(gameString)) {
-      throw RangeError("The game is too long!");
-    }
-
-    const getFrames = (str) => {
-      const matched = str.match(framesMatcher);
-
-      if (!matched) {
-        throw RangeError("A game must have 10 frames!");
-      }
-
-      const [_, ...frames] = matched;
-
-      return frames;
-    };
-
-    return getFrames(gameString);
   }
 
   static parseBonusBalls(gameString) {

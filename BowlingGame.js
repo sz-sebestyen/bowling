@@ -14,6 +14,7 @@ const { OpenFrame, Strike, Spare } = require("./Frame");
 const Ball = require("./Ball");
 
 const MAX_GAMESTRING_LENGTH = 32;
+const NUMBER_OF_PINS = 10;
 
 module.exports = class BowlingGame {
   constructor(gameString) {
@@ -62,9 +63,9 @@ module.exports = class BowlingGame {
       } else if (isSpare) {
         const firstBallScore = parseBall(frame[0]);
         balls.push(new Ball(firstBallScore, balls.length));
-        balls.push(new Ball(10 - firstBallScore, balls.length));
+        balls.push(new Ball(NUMBER_OF_PINS - firstBallScore, balls.length));
       } else if (isStrike) {
-        balls.push(new Ball(10, balls.length));
+        balls.push(new Ball(NUMBER_OF_PINS, balls.length));
       } else if (isDoubleMiss) {
         balls.push(new Ball(0, balls.length));
         balls.push(new Ball(0, balls.length));

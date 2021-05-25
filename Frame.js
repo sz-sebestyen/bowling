@@ -5,7 +5,7 @@ class Frame {
   }
 }
 
-module.exports = class OpenFrame extends Frame {
+exports.OpenFrame = class OpenFrame extends Frame {
   constructor(frameIndex, ballIndices) {
     super(frameIndex, ballIndices);
   }
@@ -15,7 +15,7 @@ module.exports = class OpenFrame extends Frame {
   }
 };
 
-module.exports = class Spare extends Frame {
+exports.Spare = class Spare extends Frame {
   constructor(frameIndex, ballIndices) {
     super(frameIndex, ballIndices);
   }
@@ -26,7 +26,7 @@ module.exports = class Spare extends Frame {
   }
 };
 
-module.exports = class Strike extends Frame {
+exports.Strike = class Strike extends Frame {
   constructor(frameIndex, ballIndices) {
     super(frameIndex, ballIndices);
   }

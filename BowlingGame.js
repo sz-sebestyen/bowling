@@ -27,7 +27,7 @@ module.exports = class BowlingGame {
     return this.score;
   }
 
-  // TODO: count the scores
+  // TODO: write tests
   static countScore(frames, balls) {
     let score;
 
@@ -40,7 +40,7 @@ module.exports = class BowlingGame {
     return score;
   }
 
-  // TODO: count the bonus scores
+  // TODO: write tests
   static countBonusScore(frames, balls) {
     let score;
 

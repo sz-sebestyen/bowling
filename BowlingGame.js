@@ -53,7 +53,7 @@ module.exports = class BowlingGame {
       const isStrike = strikeFrameMatcher.test(frame);
       const isDoubleMiss = missFrameMatcher.test(frame);
 
-      const parseBall = (char) => parseInt(char.replace("-", "0"));
+      const parseBall = (char) => parseInt(char.replace(missBallMatcher, "0"));
 
       if (isOpenFrame) {
         for (const ball of frame) {

@@ -1,6 +1,6 @@
 module.exports = class Ball {
-  constructor(numberOfPinsKnocked, ordinalNumber) {
+  constructor(numberOfPinsKnocked, index) {
     this.score = numberOfPinsKnocked;
-    this.ordinalNumber = ordinalNumber;
+    this.index = index;
   }
 };

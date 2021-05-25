@@ -15,10 +15,9 @@ const MAX_GAMESTRING_LENGTH = 32;
 module.exports = class BowlingGame {
   constructor(gameString) {
     this.gameString = gameString;
-    this._balls = [];
-    this._frames = BowlingGame.parseFrames(gameString);
-    this._bonusBalls = BowlingGame.parseBonusBalls(gameString);
-    this._score = 0;
+    this.balls = [];
+    this.frames = [];
+    this.score = 0;
   }
 
   static parseFrames(gameString) {

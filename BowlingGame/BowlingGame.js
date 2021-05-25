@@ -4,12 +4,10 @@ const {
   spareFrameMatcher,
   strikeFrameMatcher,
   missFrameMatcher,
-  strikeBonusBallsMatcher,
-  spareBonusBallMatcher,
-  noBonusBallsMatcher,
 } = require("./regex");
 
 const { parseFrames } = require("./parseFrames");
+const { parseBonusBalls } = require("./parseBonusBalls");
 
 const { OpenFrame, Strike, Spare } = require("./Frame");
 const Ball = require("./Ball");
@@ -110,25 +108,5 @@ module.exports = class BowlingGame {
     });
 
     return frames;
-  }
-
-  static parseBonusBalls(gameString) {
-    const isLastFrameOpen = gameString.match(noBonusBallsMatcher);
-    const isLastFrameSpare = gameString.match(spareBonusBallMatcher);
-    const isLastFrameStrike = gameString.match(strikeBonusBallsMatcher);
-
-    if (isLastFrameOpen) {
-      return [];
-    } else if (isLastFrameSpare) {
-      const [_, bonusBall] = isLastFrameSpare;
-
-      return [bonusBall];
-    } else if (isLastFrameStrike) {
-      const [_, ...bonusBalls] = isLastFrameStrike;
-
-      return bonusBalls;
-    } else {
-      throw RangeError("Then number of bonusballs must match the last frame!");
-    }
   }
 };

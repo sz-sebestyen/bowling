@@ -6,8 +6,13 @@ const { createBalls } = require("./createBalls");
 exports.BowlingGame = class {
   constructor(gameString) {
     this.gameString = gameString;
-    this.balls = [];
-    this.frames = [];
+
+    const parsedFrames = parseFrames(gameString);
+
+    this.balls = createBalls(parsedFrames, parseBonusBalls(gameString));
+    this.frames = createFrames(parsedFrames);
+
+    // TODO: count score
     this.score = 0;
   }
 

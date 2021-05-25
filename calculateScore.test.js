@@ -1,6 +1,6 @@
 const calculateScore = require("./calculateScore");
-const BowlingGame = require("./BowlingGame/BowlingGame");
-jest.mock("./BowlingGame/BowlingGame");
+const BowlingGame = require("./BowlingGame");
+jest.mock("./BowlingGame");
 
 beforeEach(() => {
   BowlingGame.mockClear();

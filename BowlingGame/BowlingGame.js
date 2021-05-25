@@ -3,7 +3,7 @@ const { parseBonusBalls } = require("./parseBonusBalls");
 const { createFrames } = require("./createFrames");
 const { createBalls } = require("./createBalls");
 
-module.exports = class BowlingGame {
+exports.BowlingGame = class {
   constructor(gameString) {
     this.gameString = gameString;
     this.balls = [];

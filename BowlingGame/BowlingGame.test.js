@@ -1,4 +1,4 @@
-const BowlingGame = require("./BowlingGame");
+const { BowlingGame } = require("./BowlingGame");
 
 it("placeholder", () => {
   expect(true).toBeTruthy();

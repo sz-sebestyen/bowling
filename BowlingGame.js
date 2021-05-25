@@ -29,28 +29,18 @@ module.exports = class BowlingGame {
 
   // TODO: write tests
   static countScore(frames, balls) {
-    let score;
-
-    for (const frame of frames) {
-      for (const ballIndex of frame.ballIndices) {
-        score += balls[ballIndex].score;
-      }
-    }
-
-    return score;
+    return frames.forEach((frame) =>
+      frame.ballIndices.reduce((sum, index) => sum + balls[index].score, 0)
+    );
   }
 
   // TODO: write tests
   static countBonusScore(frames, balls) {
-    let score;
-
-    for (const frame of frames) {
-      for (const ballIndex of frame.getBonusIndices()) {
-        score += balls[ballIndex].score;
-      }
-    }
-
-    return score;
+    return frames.forEach((frame) =>
+      frame
+        .getBonusIndices()
+        .reduce((sum, index) => sum + balls[index].score, 0)
+    );
   }
 
   // TODO: write tests

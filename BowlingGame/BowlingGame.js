@@ -8,8 +8,8 @@ const {
 
 const { parseFrames } = require("./parseFrames");
 const { parseBonusBalls } = require("./parseBonusBalls");
+const { createFrames } = require("./createFrames");
 
-const { OpenFrame, Strike, Spare } = require("./Frame");
 const Ball = require("./Ball");
 
 const NUMBER_OF_PINS = 10;
@@ -77,36 +77,5 @@ module.exports = class BowlingGame {
     });
 
     return balls;
-  }
-
-  // TODO: write tests
-  static createFrames(parsedFrames) {
-    const frames = [];
-    let numberOfBalls = 0;
-
-    parsedFrames.forEach((frame, frameIndex) => {
-      const isOpenFrame = openFrameMatcher.test(frame);
-      const isSpare = spareFrameMatcher.test(frame);
-      const isStrike = strikeFrameMatcher.test(frame);
-      const isDoubleMiss = missFrameMatcher.test(frame);
-
-      if (isOpenFrame) {
-        frames.push(
-          new OpenFrame(frameIndex, [numberOfBalls++, numberOfBalls++])
-        );
-      } else if (isSpare) {
-        frames.push(new Spare(frameIndex, [numberOfBalls++, numberOfBalls++]));
-      } else if (isStrike) {
-        frames.push(new Strike(frameIndex, [numberOfBalls++]));
-      } else if (isDoubleMiss) {
-        frames.push(
-          new OpenFrame(frameIndex, [numberOfBalls++, numberOfBalls++])
-        );
-      } else {
-        throw Error("Could not identify a frame!");
-      }
-    });
-
-    return frames;
   }
 };

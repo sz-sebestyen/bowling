@@ -1,17 +1,17 @@
 const calculateScore = require("./calculateScore");
-const BowlingGame = require("./BowlingGame");
-jest.mock("./BowlingGame");
+const BowlingGame = require("./BowlingGame/BowlingGame");
+jest.mock("./BowlingGame/BowlingGame");
 
 beforeEach(() => {
   BowlingGame.mockClear();
 });
 
-it('BowlingGame constructor was called once', () => {
+it("BowlingGame constructor was called once", () => {
   calculateScore();
   expect(BowlingGame).toHaveBeenCalledTimes(1);
 });
 
-it('getScore method of the BowlingGame class was called once', () => {
+it("getScore method of the BowlingGame class was called once", () => {
   expect(BowlingGame).not.toHaveBeenCalled();
 
   calculateScore();

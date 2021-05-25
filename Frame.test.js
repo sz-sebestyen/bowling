@@ -1,4 +1,4 @@
-const Frame = require("./Frame");
+const { OpenFrame, Strike, Spare } = require("./Frame");
 
 it("Test constructor", () => {
   const frame = new Frame(0, [0, 1], [2]);

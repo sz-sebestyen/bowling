@@ -10,6 +10,9 @@ const {
   noBonusBallsMatcher,
 } = require("./regex");
 
+const { OpenFrame, Strike, Spare } = require("./Frame");
+const Ball = require("./Ball");
+
 const MAX_GAMESTRING_LENGTH = 32;
 
 module.exports = class BowlingGame {
@@ -19,6 +22,14 @@ module.exports = class BowlingGame {
     this.frames = [];
     this.score = 0;
   }
+
+  getScore() {
+    return this._score;
+  }
+
+  static createBalls(parseFrames, parsedBonusBalls) {}
+
+  static createFrames(parsedFrames) {}
 
   static parseFrames(gameString) {
     const isTooLong = (str) => str.length > MAX_GAMESTRING_LENGTH;
@@ -60,9 +71,5 @@ module.exports = class BowlingGame {
     } else {
       throw RangeError("Then number of bonusballs must match the last frame!");
     }
-  }
-
-  getScore() {
-    return this._score;
   }
 };

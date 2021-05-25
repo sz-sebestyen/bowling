@@ -24,7 +24,7 @@ module.exports = class BowlingGame {
   }
 
   getScore() {
-    return this._score;
+    return this.score;
   }
 
   static createBalls(parseFrames, parsedBonusBalls) {}

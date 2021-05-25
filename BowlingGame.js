@@ -27,6 +27,33 @@ module.exports = class BowlingGame {
     return this.score;
   }
 
+  // TODO: count the scores
+  static countScore(frames, balls) {
+    let score;
+
+    for (const frame of frames) {
+      for (const ballIndex of frame.ballIndices) {
+        score += balls[ballIndex].score;
+      }
+    }
+
+    return score;
+  }
+
+  // TODO: count the bonus scores
+  static countBonusScore(frames, balls) {
+    let score;
+
+    for (const frame of frames) {
+      for (const ballIndex of frame.getBonusIndices()) {
+        score += balls[ballIndex].score;
+      }
+    }
+
+    return score;
+  }
+
+  // TODO: write tests
   static createBalls(parsedFrames, parsedBonusBalls) {
     const balls = [];
 

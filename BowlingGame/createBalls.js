@@ -1,5 +1,6 @@
 const {
   missBallMatcher,
+  strikeBallMatcher,
   openFrameMatcher,
   spareFrameMatcher,
   strikeFrameMatcher,
@@ -12,7 +13,10 @@ const NUMBER_OF_PINS = 10;
 
 exports.createBalls = (parsedFrames, parsedBonusBalls) => {
   const balls = [];
-  const parseBall = (char) => parseInt(char.replace(missBallMatcher, "0"));
+  const parseBall = (char) =>
+    parseInt(
+      char.replace(missBallMatcher, "0").replace(strikeBallMatcher, "10")
+    );
 
   parsedFrames.forEach((frame) => {
     const isOpenFrame = openFrameMatcher.test(frame);

@@ -2,6 +2,7 @@ const { parseFrames } = require("./parseFrames");
 const { parseBonusBalls } = require("./parseBonusBalls");
 const { createFrames } = require("./createFrames");
 const { createBalls } = require("./createBalls");
+const { scoreGame } = require("./scoreGame");
 
 exports.BowlingGame = class {
   constructor(gameString) {
@@ -12,27 +13,10 @@ exports.BowlingGame = class {
     this.balls = createBalls(parsedFrames, parseBonusBalls(gameString));
     this.frames = createFrames(parsedFrames);
 
-    // TODO: count score
-    this.score = 0;
+    this.score = scoreGame(this.frames, this.balls);
   }
 
   getScore() {
     return this.score;
-  }
-
-  // TODO: write tests
-  static countScore(frames, balls) {
-    return frames.forEach((frame) =>
-      frame.ballIndices.reduce((sum, index) => sum + balls[index].score, 0)
-    );
-  }
-
-  // TODO: write tests
-  static countBonusScore(frames, balls) {
-    return frames.forEach((frame) =>
-      frame
-        .getBonusIndices()
-        .reduce((sum, index) => sum + balls[index].score, 0)
-    );
   }
 };

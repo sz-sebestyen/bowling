@@ -1,7 +1,11 @@
 const { BowlingGame } = require("./BowlingGame");
 
 it("all strike", () => {
-  const score = new BowlingGame("x x x x x x x x x x x x").getScore();
+  const game = new BowlingGame("x x x x x x x x x x x x");
+  console.log("balls: ", game.balls);
+  console.log("frames: ", game.frames);
+
+  const score = game.getScore();
   console.log("calculated: ", score);
   expect(score === 300).toBeTruthy();
 });

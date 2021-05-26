@@ -4,6 +4,7 @@ const Ball = require("./Ball");
 
 const { OpenFrame, Strike, Spare } = require("./Frame");
 
+// 33 1/ x 33 1/ x 33 1/ x x 2 -
 const frames = [
   new OpenFrame(0, [0, 1]),
   new Spare(1, [2, 3]),

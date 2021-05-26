@@ -23,6 +23,7 @@ const spareBonusBall = `^(?:${frameNoCap}\\s){9}${spareFrame}\\s${bonusBall}$`;
 const noBonusBalls = `^(?:${frameNoCap}\\s){9}(?:${openFrame}|${missFrame})$`;
 
 exports.missBallMatcher = new RegExp(missBall);
+exports.strikeBallMatcher = new RegExp(strikeBall, "i");
 
 exports.openFrameMatcher = new RegExp(`^${openFrame}$`);
 exports.spareFrameMatcher = new RegExp(`^${spareFrame}$`);

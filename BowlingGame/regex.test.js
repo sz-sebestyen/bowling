@@ -1,5 +1,6 @@
 const {
   missBallMatcher,
+  strikeBallMatcher,
   openFrameMatcher,
   spareFrameMatcher,
   strikeFrameMatcher,
@@ -24,6 +25,24 @@ describe("Match a missed ball", () => {
   it("Don't match open frames", () => {
     for (let i = 1; i < 10; i++) {
       expect(missBallMatcher.test(`${i}`)).toBeFalsy();
+    }
+  });
+});
+
+describe("Match a strike ball", () => {
+  it("Correct", () => {
+    expect(strikeBallMatcher.test("x")).toBeTruthy();
+    expect(strikeBallMatcher.test("X")).toBeTruthy();
+  });
+
+  it("Don't match misses and spares", () => {
+    expect(strikeBallMatcher.test("-")).toBeFalsy();
+    expect(strikeBallMatcher.test("/")).toBeFalsy();
+  });
+
+  it("Don't match open frames", () => {
+    for (let i = 1; i < 10; i++) {
+      expect(strikeBallMatcher.test(`${i}`)).toBeFalsy();
     }
   });
 });

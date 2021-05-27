@@ -9,7 +9,7 @@ const { OpenFrame, Strike, Spare } = require("./Frame");
 
 exports.createFrames = (parsedFrames) => {
   const frames = [];
-  let numberOfBalls = 0;
+  let currentBallIndex = 0;
 
   parsedFrames.forEach((frame, frameIndex) => {
     const isOpenFrame = openFrameMatcher.test(frame);
@@ -19,15 +19,17 @@ exports.createFrames = (parsedFrames) => {
 
     if (isOpenFrame) {
       frames.push(
-        new OpenFrame(frameIndex, [numberOfBalls++, numberOfBalls++])
+        new OpenFrame(frameIndex, [currentBallIndex++, currentBallIndex++])
       );
     } else if (isSpare) {
-      frames.push(new Spare(frameIndex, [numberOfBalls++, numberOfBalls++]));
+      frames.push(
+        new Spare(frameIndex, [currentBallIndex++, currentBallIndex++])
+      );
     } else if (isStrike) {
-      frames.push(new Strike(frameIndex, [numberOfBalls++]));
+      frames.push(new Strike(frameIndex, [currentBallIndex++]));
     } else if (isDoubleMiss) {
       frames.push(
-        new OpenFrame(frameIndex, [numberOfBalls++, numberOfBalls++])
+        new OpenFrame(frameIndex, [currentBallIndex++, currentBallIndex++])
       );
     } else {
       throw Error("Could not identify a frame!");

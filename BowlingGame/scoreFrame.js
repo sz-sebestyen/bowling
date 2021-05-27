@@ -1,5 +1,5 @@
 exports.scoreFrame = (frame, balls) => {
-  const allIndices = [...frame.ballIndices, ...frame.getBonusIndices()];
+  const allIndices = [...frame.getBallIndices(), ...frame.getBonusIndices()];
 
   return allIndices
     .map((ballIndex) => balls[ballIndex].score)

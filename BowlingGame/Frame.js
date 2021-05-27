@@ -1,7 +1,19 @@
 class Frame {
   constructor(frameIndex, ballIndices) {
-    this.index = frameIndex;
-    this.ballIndices = ballIndices;
+    this._index = frameIndex;
+    this._ballIndices = ballIndices;
+  }
+
+  getBallIndices() {
+    return this._ballIndices;
+  }
+
+  getIndex() {
+    return this._index;
+  }
+
+  getLastBallIndex() {
+    return this.getBallIndices().slice(-1)[0];
   }
 }
 
@@ -21,7 +33,7 @@ exports.Spare = class Spare extends Frame {
   }
 
   getBonusIndices() {
-    const lastBallIndex = this.ballIndices.slice(-1)[0];
+    const lastBallIndex = this.getLastBallIndex();
     return [lastBallIndex + 1];
   }
 };
@@ -32,7 +44,7 @@ exports.Strike = class Strike extends Frame {
   }
 
   getBonusIndices() {
-    const lastBallIndex = this.ballIndices.slice(-1)[0];
+    const lastBallIndex = this.getLastBallIndex();
     return [lastBallIndex + 1, lastBallIndex + 2];
   }
 };

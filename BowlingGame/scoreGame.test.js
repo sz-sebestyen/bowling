@@ -6,16 +6,16 @@ const { OpenFrame, Strike, Spare } = require("./Frame");
 
 // 33 1/ x 33 1/ x 33 1/ x x 2 -
 const frames = [
-  new OpenFrame(0, [0, 1]),
-  new Spare(1, [2, 3]),
-  new Strike(2, [4]),
-  new OpenFrame(3, [5, 6]),
-  new Spare(4, [7, 8]),
-  new Strike(5, [9]),
-  new OpenFrame(6, [10, 11]),
-  new Spare(7, [12, 13]),
-  new Strike(8, [14]),
-  new Strike(9, [15]),
+  new OpenFrame(0, 0),
+  new Spare(1, 2),
+  new Strike(2, 4),
+  new OpenFrame(3, 5),
+  new Spare(4, 7),
+  new Strike(5, 9),
+  new OpenFrame(6, 10),
+  new Spare(7, 12),
+  new Strike(8, 14),
+  new Strike(9, 15),
 ];
 
 const balls = [

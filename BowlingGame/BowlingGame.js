@@ -13,10 +13,10 @@ exports.BowlingGame = class {
     this.balls = createBalls(parsedFrames, parseBonusBalls(gameString));
     this.frames = createFrames(parsedFrames);
 
-    this.score = scoreGame(this.frames, this.balls);
+    this._score = scoreGame(this.frames, this.balls);
   }
 
   getScore() {
-    return this.score;
+    return this._score;
   }
 };

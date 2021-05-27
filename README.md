@@ -1,6 +1,6 @@
 # bowling
 
-In september of 2020 I got the following programming task from one of my job applications. Now I decided to do it again in javascript and see how much I have improved. I'm aiming to write clean and testable code.
+In september of 2020 I got the following programming task from one of my job applications. I decided to do it again in javascript and see how much I have improved. I'm aiming to write clean and testable code.
 
 ## task
 

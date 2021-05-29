@@ -21,13 +21,10 @@ const twoBonusBalls = `^(?:${frame}\\s){9}${strike}\\s${bonusBall}\\s${bonusBall
 const oneBonusBall = `^(?:${frame}\\s){9}${spare}\\s${bonusBall}$`;
 const noBonusBalls = `^(?:${frame}\\s){9}(?:${openFrame}|${miss})$`;
 
-exports.missBallMatcher = new RegExp(miss);
-exports.strikeBallMatcher = new RegExp(strike, "i");
-
 exports.openFrameMatcher = new RegExp(`^${openFrame}$`);
-exports.spareFrameMatcher = new RegExp(`^${spare}$`);
-exports.strikeFrameMatcher = new RegExp(`^${strike}$`, "i");
-exports.missFrameMatcher = new RegExp(`^${miss}$`);
+exports.spareMatcher = new RegExp(`^${spare}$`);
+exports.strikeMatcher = new RegExp(`^${strike}$`, "i");
+exports.missMatcher = new RegExp(`^${miss}$`);
 
 exports.framesMatcher = new RegExp(tenFrames, "i");
 exports.strikeBonusBallsMatcher = new RegExp(twoBonusBalls, "i");

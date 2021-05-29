@@ -1,10 +1,8 @@
 const {
-  missBallMatcher,
-  strikeBallMatcher,
+  missMatcher,
+  strikeMatcher,
   openFrameMatcher,
-  spareFrameMatcher,
-  strikeFrameMatcher,
-  missFrameMatcher,
+  spareMatcher,
   framesMatcher,
   strikeBonusBallsMatcher,
   spareBonusBallMatcher,
@@ -13,36 +11,36 @@ const {
 
 describe("Match a missed ball", () => {
   it("Correct", () => {
-    expect(missBallMatcher.test("-")).toBeTruthy();
+    expect(missMatcher.test("-")).toBeTruthy();
   });
 
   it("Don't match strikes and spares", () => {
-    expect(missBallMatcher.test("x")).toBeFalsy();
-    expect(missBallMatcher.test("X")).toBeFalsy();
-    expect(missBallMatcher.test("/")).toBeFalsy();
+    expect(missMatcher.test("x")).toBeFalsy();
+    expect(missMatcher.test("X")).toBeFalsy();
+    expect(missMatcher.test("/")).toBeFalsy();
   });
 
   it("Don't match open frames", () => {
     for (let i = 1; i < 10; i++) {
-      expect(missBallMatcher.test(`${i}`)).toBeFalsy();
+      expect(missMatcher.test(`${i}`)).toBeFalsy();
     }
   });
 });
 
 describe("Match a strike ball", () => {
   it("Correct", () => {
-    expect(strikeBallMatcher.test("x")).toBeTruthy();
-    expect(strikeBallMatcher.test("X")).toBeTruthy();
+    expect(strikeMatcher.test("x")).toBeTruthy();
+    expect(strikeMatcher.test("X")).toBeTruthy();
   });
 
   it("Don't match misses and spares", () => {
-    expect(strikeBallMatcher.test("-")).toBeFalsy();
-    expect(strikeBallMatcher.test("/")).toBeFalsy();
+    expect(strikeMatcher.test("-")).toBeFalsy();
+    expect(strikeMatcher.test("/")).toBeFalsy();
   });
 
   it("Don't match open frames", () => {
     for (let i = 1; i < 10; i++) {
-      expect(strikeBallMatcher.test(`${i}`)).toBeFalsy();
+      expect(strikeMatcher.test(`${i}`)).toBeFalsy();
     }
   });
 });
@@ -69,54 +67,54 @@ describe("Match open frames", () => {
 
 describe("Match spare frames", () => {
   it("Correct", () => {
-    expect(spareFrameMatcher.test("-/")).toBeTruthy();
+    expect(spareMatcher.test("-/")).toBeTruthy();
     for (let i = 1; i < 10; i++) {
-      expect(spareFrameMatcher.test(`${i}/`)).toBeTruthy();
+      expect(spareMatcher.test(`${i}/`)).toBeTruthy();
     }
   });
 
   it("Don't match strikes, open frames and too long frames", () => {
-    expect(spareFrameMatcher.test("x")).toBeFalsy();
-    expect(spareFrameMatcher.test("//")).toBeFalsy();
-    expect(spareFrameMatcher.test("-9")).toBeFalsy();
-    expect(spareFrameMatcher.test("-9/")).toBeFalsy();
+    expect(spareMatcher.test("x")).toBeFalsy();
+    expect(spareMatcher.test("//")).toBeFalsy();
+    expect(spareMatcher.test("-9")).toBeFalsy();
+    expect(spareMatcher.test("-9/")).toBeFalsy();
   });
 });
 
 describe("Match strike frames", () => {
   it("Correct", () => {
-    expect(strikeFrameMatcher.test("x")).toBeTruthy();
-    expect(strikeFrameMatcher.test("X")).toBeTruthy();
+    expect(strikeMatcher.test("x")).toBeTruthy();
+    expect(strikeMatcher.test("X")).toBeTruthy();
   });
 
   it("Don't match too long frames, spares and open frams", () => {
-    expect(strikeFrameMatcher.test("xx")).toBeFalsy();
-    expect(strikeFrameMatcher.test("//")).toBeFalsy();
-    expect(strikeFrameMatcher.test("-/")).toBeFalsy();
+    expect(strikeMatcher.test("xx")).toBeFalsy();
+    expect(strikeMatcher.test("//")).toBeFalsy();
+    expect(strikeMatcher.test("-/")).toBeFalsy();
     for (let i = 1; i < 10; i++) {
-      expect(strikeFrameMatcher.test(`${i}/`)).toBeFalsy();
+      expect(strikeMatcher.test(`${i}/`)).toBeFalsy();
     }
     for (let i = 1; i < 9; i++) {
-      expect(strikeFrameMatcher.test(`${i}${9 - i}`)).toBeFalsy();
+      expect(strikeMatcher.test(`${i}${9 - i}`)).toBeFalsy();
     }
   });
 });
 
 describe("Match missed frames", () => {
   it("Correct", () => {
-    expect(missFrameMatcher.test("-")).toBeTruthy();
+    expect(missMatcher.test("-")).toBeTruthy();
   });
 
   it("Don't match spares, strikes, open frames and tool ong frames", () => {
-    expect(missFrameMatcher.test("//")).toBeFalsy();
-    expect(missFrameMatcher.test("-/")).toBeFalsy();
-    expect(missFrameMatcher.test("--")).toBeFalsy();
-    expect(missFrameMatcher.test("x")).toBeFalsy();
+    expect(missMatcher.test("//")).toBeFalsy();
+    expect(missMatcher.test("-/")).toBeFalsy();
+    expect(missMatcher.test("--")).toBeFalsy();
+    expect(missMatcher.test("x")).toBeFalsy();
     for (let i = 1; i < 10; i++) {
-      expect(missFrameMatcher.test(`${i}/`)).toBeFalsy();
+      expect(missMatcher.test(`${i}/`)).toBeFalsy();
     }
     for (let i = 1; i < 9; i++) {
-      expect(missFrameMatcher.test(`${i}${9 - i}`)).toBeFalsy();
+      expect(missMatcher.test(`${i}${9 - i}`)).toBeFalsy();
     }
   });
 });

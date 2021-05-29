@@ -1,8 +1,8 @@
 const {
   openFrameMatcher,
-  spareFrameMatcher,
-  strikeFrameMatcher,
-  missFrameMatcher,
+  spareMatcher,
+  strikeMatcher,
+  missMatcher,
 } = require("./regex");
 
 const { OpenFrame, Strike, Spare } = require("./Frame");
@@ -12,9 +12,9 @@ exports.createFrames = (parsedFrames) => {
 
   parsedFrames.forEach((frame, frameIndex) => {
     const isOpenFrame = openFrameMatcher.test(frame);
-    const isSpare = spareFrameMatcher.test(frame);
-    const isStrike = strikeFrameMatcher.test(frame);
-    const isDoubleMiss = missFrameMatcher.test(frame);
+    const isSpare = spareMatcher.test(frame);
+    const isStrike = strikeMatcher.test(frame);
+    const isDoubleMiss = missMatcher.test(frame);
 
     const lastBallIndex = frames.length
       ? frames.slice(-1)[0].getLastBallIndex()

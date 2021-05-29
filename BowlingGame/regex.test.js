@@ -3,9 +3,9 @@ const {
   strikeMatcher,
   openFrameMatcher,
   spareMatcher,
-  framesMatcher,
-  strikeBonusBallsMatcher,
-  spareBonusBallMatcher,
+  tenFramesCapture,
+  twoBonusBallsCapture,
+  oneBonusBallCapture,
   noBonusBallsMatcher,
 } = require("./regex");
 
@@ -124,27 +124,27 @@ describe("Match 10 frames", () => {
   const example2 = "x 35 9/ -7 -/ x 12 51 - 4/ x";
 
   it("Correct", () => {
-    expect(framesMatcher.test(example1)).toBeTruthy();
-    expect(framesMatcher.test(example2)).toBeTruthy();
+    expect(tenFramesCapture.test(example1)).toBeTruthy();
+    expect(tenFramesCapture.test(example2)).toBeTruthy();
   });
 
   it("Don't match too short strings", () => {
-    expect(framesMatcher.test("x x x x 23 12 -/ -")).toBeFalsy();
+    expect(tenFramesCapture.test("x x x x 23 12 -/ -")).toBeFalsy();
   });
 
   it("Don't match strings with more spaces", () => {
-    expect(framesMatcher.test("x x x x x x x x  x x x x")).toBeFalsy();
+    expect(tenFramesCapture.test("x x x x x x x x  x x x x")).toBeFalsy();
   });
 
   it("Match capuring groups", () => {
-    const match1 = example1.match(framesMatcher);
+    const match1 = example1.match(tenFramesCapture);
     expect(match1[0] === example1.slice(0, 19)).toBeTruthy();
     for (let i = 1; i < match1.length; i++) {
       const arr = example1.split(" ");
       expect(match1[i] === arr[i - 1]).toBeTruthy();
     }
 
-    const match2 = example2.match(framesMatcher);
+    const match2 = example2.match(tenFramesCapture);
     expect(match2[0] === example2.slice(0, 26)).toBeTruthy();
     for (let i = 1; i < match2.length; i++) {
       const arr = example2.split(" ");
@@ -183,71 +183,71 @@ describe("Match games without bonus balls", () => {
 describe("Match games with one bonus ball", () => {
   it("Game ends on miss", () => {
     const game = "x x x x x x x x x -";
-    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
+    expect(oneBonusBallCapture.test(game)).toBeFalsy();
   });
 
   it("Game ends on open frame", () => {
     const game = "x x x x x x x x x 23";
-    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
+    expect(oneBonusBallCapture.test(game)).toBeFalsy();
   });
 
   it("Game ends on open spare", () => {
     const game = "x x x x x x x x x 2/ x";
-    expect(spareBonusBallMatcher.test(game)).toBeTruthy();
+    expect(oneBonusBallCapture.test(game)).toBeTruthy();
   });
 
   it("Game ends on open spare, capture bonus ball", () => {
     const game = "x x x x x x x x x 2/ x";
-    expect(game.match(spareBonusBallMatcher)[0] === game).toBeTruthy();
-    expect(game.match(spareBonusBallMatcher)[1] === "x").toBeTruthy();
+    expect(game.match(oneBonusBallCapture)[0] === game).toBeTruthy();
+    expect(game.match(oneBonusBallCapture)[1] === "x").toBeTruthy();
   });
 
   it("Game ends on open spare, but the bonus ball is missing", () => {
     const game = "x x x x x x x x x 2/ ";
-    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
+    expect(oneBonusBallCapture.test(game)).toBeFalsy();
   });
 
   it("Game ends on open strike", () => {
     const game = "x x x x x x x x x x x 2";
-    expect(spareBonusBallMatcher.test(game)).toBeFalsy();
+    expect(oneBonusBallCapture.test(game)).toBeFalsy();
   });
 });
 
 describe("Match games with two bonus balls", () => {
   it("Game ends on miss", () => {
     const game = "x x x x x x x x x -";
-    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+    expect(twoBonusBallsCapture.test(game)).toBeFalsy();
   });
 
   it("Game ends on open frame", () => {
     const game = "x x x x x x x x x 23";
-    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+    expect(twoBonusBallsCapture.test(game)).toBeFalsy();
   });
 
   it("Game ends on open spare", () => {
     const game = "x x x x x x x x x 2/ x";
-    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+    expect(twoBonusBallsCapture.test(game)).toBeFalsy();
   });
 
   it("Game ends on open spare, but there is an additional ball", () => {
     const game = "x x x x x x x x x 2/ x x";
-    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+    expect(twoBonusBallsCapture.test(game)).toBeFalsy();
   });
 
   it("Game ends on open strike", () => {
     const game = "x x x x x x x x x x x 2";
-    expect(strikeBonusBallsMatcher.test(game)).toBeTruthy();
+    expect(twoBonusBallsCapture.test(game)).toBeTruthy();
   });
 
   it("Game ends on open strike, capture bonus balls", () => {
     const game = "x x x x x x x x x x x 2";
-    expect(game.match(strikeBonusBallsMatcher)[0] === game).toBeTruthy();
-    expect(game.match(strikeBonusBallsMatcher)[1] === "x").toBeTruthy();
-    expect(game.match(strikeBonusBallsMatcher)[2] === "2").toBeTruthy();
+    expect(game.match(twoBonusBallsCapture)[0] === game).toBeTruthy();
+    expect(game.match(twoBonusBallsCapture)[1] === "x").toBeTruthy();
+    expect(game.match(twoBonusBallsCapture)[2] === "2").toBeTruthy();
   });
 
   it("Game ends on open strike, but bonus balls are missing", () => {
     const game = "x x x x x x x x x x";
-    expect(strikeBonusBallsMatcher.test(game)).toBeFalsy();
+    expect(twoBonusBallsCapture.test(game)).toBeFalsy();
   });
 });

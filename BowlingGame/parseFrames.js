@@ -1,4 +1,4 @@
-const { framesMatcher } = require("./regex");
+const { tenFramesCapture } = require("./regex");
 
 const MAX_GAMESTRING_LENGTH = 32;
 
@@ -10,7 +10,7 @@ exports.parseFrames = (gameString) => {
   }
 
   const getFrames = (str) => {
-    const matched = str.match(framesMatcher);
+    const matched = str.match(tenFramesCapture);
 
     if (!matched) {
       throw RangeError("A game must have 10 frames!");

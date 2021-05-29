@@ -1,13 +1,13 @@
 const {
-  strikeBonusBallsMatcher,
-  spareBonusBallMatcher,
+  twoBonusBallsCapture,
+  oneBonusBallCapture,
   noBonusBallsMatcher,
 } = require("./regex");
 
 exports.parseBonusBalls = (gameString) => {
   const isLastFrameOpen = gameString.match(noBonusBallsMatcher);
-  const isLastFrameSpare = gameString.match(spareBonusBallMatcher);
-  const isLastFrameStrike = gameString.match(strikeBonusBallsMatcher);
+  const isLastFrameSpare = gameString.match(oneBonusBallCapture);
+  const isLastFrameStrike = gameString.match(twoBonusBallsCapture);
 
   let parsedBonusBalls;
 

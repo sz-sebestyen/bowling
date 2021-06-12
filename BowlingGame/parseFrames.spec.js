@@ -1,13 +1,12 @@
 const { parseFrames } = require("./parseFrames");
 
-describe("Parse frames", () => {
-  it("Correct", () => {
-    expect(
-      parseFrames("x x x x x x x x x x x x").join(" ") === "x x x x x x x x x x"
-    ).toBeTruthy();
+describe("parseFrames", () => {
+  it("returns 10 frames when given enough frames", () => {
+    const expected = ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x"];
+    expect(parseFrames("x x x x x x x x x x x x")).toEqual(expected);
   });
 
-  it("Too few frames", () => {
+  it("throws RangeError given too few frames", () => {
     expect(() => parseFrames("x x x x x x")).toThrow(RangeError);
   });
 });

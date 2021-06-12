@@ -41,6 +41,10 @@ const balls = [
 
 // 88 + 10 + 6 + 10 + 6 + 10 + 10 + 2 + 2 + 0 = 144
 
-it("Count scores", () => {
-  expect(scoreGame(frames, balls) === 144).toBeTruthy();
+describe("scoreGame", () => {
+  it("calculates the right score", () => {
+    const score = scoreGame(frames, balls);
+
+    expect(score).toBe(144);
+  });
 });

@@ -1,17 +1,18 @@
 const calculateScore = require("./calculateScore");
 
-describe("Calculate the right score", () => {
-  it("All strike", () => {
-    expect(calculateScore("x x x x x x x x x x x x") === 300).toBeTruthy();
+describe("calculateScore", () => {
+  it("returns 300 when all frames are strikes", () => {
+    const score = calculateScore("x x x x x x x x x x x x");
+    expect(score).toBe(300);
   });
 
-  it("One bonus ball", () => {
-    expect(calculateScore("x 35 9/ -7 -/ x 12 51 - 4/ x") === 105).toBeTruthy();
+  it("returns the right score when given one bonus ball", () => {
+    const score = calculateScore("x 35 9/ -7 -/ x 12 51 - 4/ x");
+    expect(score).toBe(105);
   });
 
-  it("One bonus ball", () => {
-    expect(
-      calculateScore("33 1/ x 33 1/ x 33 1/ x x 2 -") === 144
-    ).toBeTruthy();
+  it("returns the right score when given two bonus balls", () => {
+    const score = calculateScore("33 1/ x 33 1/ x 33 1/ x x 2 -");
+    expect(score).toBe(144);
   });
 });

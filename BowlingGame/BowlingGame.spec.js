@@ -1,17 +1,17 @@
 const { BowlingGame } = require("./BowlingGame");
 
-it("all strike", () => {
-  const game = new BowlingGame("x x x x x x x x x x x x");
-  // console.log("balls: ", game.balls);
-  // console.log("frames: ", game.frames);
+describe("BowlingGame", () => {
+  it("should return 300 for an all strike game", () => {
+    const game = new BowlingGame("x x x x x x x x x x x x");
 
-  const score = game.getScore();
-  // console.log("calculated: ", score);
-  expect(score === 300).toBeTruthy();
-});
+    const score = game.getScore();
 
-it("ends on spare", () => {
-  const score = new BowlingGame("x 35 9/ -7 -/ x 12 51 - 4/ x").getScore();
-  // console.log("calculated: ", score);
-  expect(score === 105).toBeTruthy();
+    expect(score).toBe(300);
+  });
+
+  it("should also add the score of the bonus ball", () => {
+    const score = new BowlingGame("x 35 9/ -7 -/ x 12 51 - 4/ x").getScore();
+
+    expect(score).toBe(105);
+  });
 });
